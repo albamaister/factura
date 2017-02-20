@@ -87,9 +87,9 @@
 						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevoCliente">
 						 <span class="glyphicon glyphicon-user"></span> Nuevo cliente
 						</button>
-						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+						<a href="#ventana1" type="button" class="btn btn-primary" data-toggle="modal" >
 						 <span class="glyphicon glyphicon-search"></span> Agregar productos
-						</button>
+						</a>
 						<button type="button" class="btn btn-primary" onclick="">
 						  <span class="glyphicon glyphicon-print"></span> Imprimir
 						</button>
@@ -113,41 +113,32 @@
         <th>P./UNIT.</th>
         <th>IVA</th>
         <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-        <td>john@example.com</td>
-        <td>john@example.com</td>
-        <td>100</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-        <td>john@example.com</td>
-        <td>john@example.com</td>
-        <td>100</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-        <td>john@example.com</td>
-        <td>john@example.com</td>
-        <td>100</td>
+        
       </tr>
       
-       <tr>
+      
+      
+      
+      
+      
+    </thead>
+    <tbody>
+        
+        
+    </tbody>
+  
+    <tfoot>
+    
+     
+      <tr>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
         <td>SUBTOTAL</td>
         <td>400</td>
+        <td>
+        </td>
       </tr>
       <tr>
         <td></td>
@@ -165,13 +156,96 @@
         <td>TOTAL</td>
         <td>suma</td>
       </tr>
-    </tbody>
+       
+      
+       
+    </tfoot>
+    
+  
   </table>
+  
+
+
+  
+
+    
+     
+     
+     
+
+    
+
+  
+
   
   
   
  
   </div>
+		
+		
+		<!-- ventana emergente -->
+		
+    <div class="modal fade" id="ventana1">
+       <div class="modal-dialog">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                       </button>
+                       
+               </div>
+               
+               <div class="modal-body">
+                   <form role="form">
+                      <div class="form-group">
+                        <label for="codi">Codigo</label>
+                        <input type="text" class="form-control" id="codi">
+                      </div>
+                      <div class="form-group">
+                        <label for="desc">Descripcion</label>
+                        <input type="text" class="form-control" id="desc">
+                      </div>
+                      <div class="form-group">
+                        <label for="cant">Canidad</label>
+                        <input type="text" class="form-control" id="cant">
+                      </div>
+                      <div class="form-group">
+                        <label for="uni">P. unitario</label>
+                        <input type="text" class="form-control" id="uni">
+                      </div>
+                      <div class="form-group">
+                        <label for="iva">IVA</label>
+                        <input type="text" class="form-control" id="iva">
+                      </div>
+                      <div class="form-group">
+                        <label for="total">Total</label>
+                        <input type="text" class="form-control" id="total">
+                      </div>
+                      
+                     
+                      
+                    </form>
+               </div>
+               
+               
+               <!--Footer de la ventana-->
+               <div class="modal-footer">
+                  
+                  
+                    
+                    <form onsubmit="addPerson(event)">
+                       <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                      
+                          <button  class="btn btn-primary" >Guardar</button>
+                      
+                        
+                    </form>
+               </div>
+           </div>
+       </div> 
+        
+    </div>
+		
 		
 		 
 	</div>
@@ -182,6 +256,49 @@
    
    <script src ="js/jquery.js"> </script>
    <script src="js/bootstrap.min.js"></script>
+   
+   
+   
+   
+   <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+
+<script type="text/javascript">
+ function addPerson(e) {
+  e.preventDefault();
+  const row = createRow({
+    codi: $('#codi').val(),
+    desc: $('#desc').val(),
+    cant: $('#cant').val(),
+    uni: $('#uni').val(),
+    iva: $('#iva').val(),
+    total: $('#total').val(),
+  });
+  $('table tbody').append(row);
+  clean();
+}
+
+function createRow(data) {
+  return (
+    `<tr>` +
+      `<td>${$('tbody tr').length + 1}</td>` +
+      `<td>${data.desc}</td>` +
+      `<td>${data.cant}</td>` +
+        `<td>${data.uni}</td>` +
+       `<td>${data.iva}</td>` +
+       `<td>${data.total}</td>` +
+    `</tr>`
+  );
+}
+
+function clean() {
+  $('#codi').val('');
+  $('#desc').val('');
+  $('#cant').val('');
+    $('#uni').val('');
+    $('#iva').val('');
+    $('#total').val('');
+}
+</script>
     </body>
     
     
